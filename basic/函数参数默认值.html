@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>函数参数默认值</p>
+  <p>通过在参数中 a=1 来实现</p>
+  <script>
+    function add(a,b=1){
+      return a+b
+    }
+    console.log(add(1));
+
+
+    // rest参数
+    function arrayPush(arr,x,y,z){
+      for(let i = 1; i < arguments.length -1; i++){
+        arr.push(arguments[i])
+      }
+      return arr
+    }
+
+    console.log(arrayPush([1,2],3,4,5));
+
+    function arrayPush6(arr,...newArr){
+      console.log(newArr);
+      // console.log(newArr2);
+      return [arr,...newArr]
+    }
+
+    console.log(arrayPush6([1,2],5,7,8,9));
+  </script>
+</body>
+</html>

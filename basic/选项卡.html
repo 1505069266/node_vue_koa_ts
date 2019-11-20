@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p{
+      display: none;
+    }
+    
+    .active{
+      display: block;
+    }
+    button.active{
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <button class="active">选项1</button>
+  <button>选项2</button>
+  <button>选项3</button>
+  <p class="active">内容1</p>
+  <p>内容2</p>
+  <p>内容3</p>
+  <script>
+    let btn = document.querySelectorAll('button')
+    let p = document.querySelectorAll('p')
+
+    for(let i = 0; i < p.length; i++){
+      btn[i].onclick = function(){
+        for(let j = 0; j < btn.length; j++){
+          btn[j].className = ''
+          p[j].className = ''
+        }
+        btn[i].className = 'active'
+        p[i].className = 'active'
+      }
+    }
+  </script>
+</body>
+</html>

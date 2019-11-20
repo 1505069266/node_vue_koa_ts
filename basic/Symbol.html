@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //Symbol的使用:: 属性私有化 - 数据保护
+    let s1 = Symbol()
+
+    console.log(s1);
+
+
+    //我希望一个Person的性别在出生以后就能够被确定,并一直报错到死
+
+    var Person = (function(){
+      var _gender = Symbol('男')
+      function P(name, gender){
+        this.name = name;
+        this[_gender] = gender
+      }
+
+      P.prototype.getGender = function(){
+        return _gender;
+      }
+      return P
+    })()
+
+    let momo = new Person('默默','女')
+
+    console.log(momo.getGender());
+
+  </script>
+</body>
+</html>

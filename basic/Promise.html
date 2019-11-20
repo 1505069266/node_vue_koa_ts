@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const imgs = [
+      'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3632677651,3179755979&fm=26&gp=0.jpg',
+      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3190441126,995644236&fm=26&gp=0.jpg',
+      'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2204139582,2705239110&fm=15&gp=0.jpg'
+    ]
+
+
+    const p = new Promise(function(resolve,reject){
+      const img = new Image()
+      img.src = imgs[5]
+      img.onload = function(){
+        resolve(this)
+      }
+      img.onerror = function(){
+        reject(new Error('图片加载失败'))
+      }
+    })
+    console.log(123);
+    p.then(function(img){
+      console.log('加载完成');
+      document.body.appendChild(img)
+    },function(err){
+      console.log(err);
+    })
+    console.log(456);
+  </script> 
+</body>
+</html>
