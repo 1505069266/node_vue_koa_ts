@@ -5,6 +5,7 @@ const Swig = require('koa-swig')
 const co = require('co')
 let app = new Koa()
 const koaStaticCache = require('koa-static-cache')
+const bodyParser = require('koa-bodyparser')
 
 /**
  * 处理静态文件
@@ -12,6 +13,13 @@ const koaStaticCache = require('koa-static-cache')
 app.use(koaStaticCache('./static',{
   prefix: '/static',
   gzip: true
+}))
+
+/**
+ * 处理请求正文中的数据
+ */
+app.use( bodyParser({
+
 }))
 
 /**
@@ -27,6 +35,8 @@ let datas = {
     {id:3,title: '爱璇璇',done: true}
   ]
 }
+
+let maxId = datas.tasks.length;
 
 
 /**
@@ -54,10 +64,38 @@ router.get('/',async ctx=>{
 })
 
 /**
- * 添加,添加新的任务
+ * 添加,添加新的任务,用来展示添加任务的页面
  */
-router.get('/add',ctx=>{
-  ctx.body = '/add'
+router.get('/add',async ctx=>{
+  ctx.body = await ctx.render('add.html',{
+    datas: datas
+  })
+})
+
+/**
+ * 添加,处理通过添加页面提交的数据
+ */
+router.post('/posttask',async ctx=>{
+    let title = ctx.request.body.title
+    // ctx.body = title
+    if(!title){
+      ctx.body =await ctx.render('message',{
+        msg: '请输入任务标题',
+        href: 'javascript:history.back()'
+      })
+      return
+    }else{
+      datas.tasks.push({
+        id: ++maxId,
+        title:ctx.request.body.title,
+        done: false
+      })
+
+      ctx.body =await ctx.render('message',{
+        msg: '添加成功',
+        href: '/'
+      })
+    }
 })
 
 /**
