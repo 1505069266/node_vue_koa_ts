@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/static/{{datas.skin}}">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{datas.appName}}</h1>
+  <hr>
+  <ul>
+    {% for task in datas.tasks%}
+    {% if task.done %}
+    
+    <li class="done"><input type="checkbox" checked>{{task.id}} - {{task.title}} <a href="">删除</a></li>
+    
+    {%else%}
+    <li><input type="checkbox">{{task.id}} - {{task.title}}<a href="">删除</a></li>
+    {% endif%}
+    {% endfor %}
+  </ul>
+</body>
+</html>

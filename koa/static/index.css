@@ -1,0 +1,13 @@
+body{
+  /* color:red; */
+}
+
+.done {
+  text-decoration: line-through;
+  color: greenyellow
+}
+
+li{
+
+  line-height: 30px;
+}
